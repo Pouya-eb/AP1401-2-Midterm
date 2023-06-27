@@ -15,7 +15,12 @@ int main()
     // Part 2
     double average { std::accumulate(data.begin(), data.end(), 0.0) / data.size() };
     std::cout << "average : " << average << std::endl;
-    
+
+    // Part 3
+    std::vector<double> square(data.size());
+    std::transform(data.begin(), data.end(), square.begin(), [&average](double x) { return std::pow(x - average, 2); });
+    double stddev { std::sqrt(std::accumulate(square.begin(), square.end(), 0)) / static_cast<double>(data.size()) };
+    std::cout << "stddev : " << stddev << std::endl;
 
     return 0;
 }
