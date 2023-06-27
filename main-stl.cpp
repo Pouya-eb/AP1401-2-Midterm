@@ -26,5 +26,11 @@ int main()
     auto iter { std::remove_if(data.begin(), data.end(), [&average, &stddev](double x) { return std::abs(x - average) > 2 * stddev; }) };
     data.erase(iter, data.end());
 
+    // Part 5
+    std::fill(square.begin(), square.end(), 0.0);
+    std::transform(data.begin(), data.end(), square.begin(), [&average](double x) { return std::pow(x - average, 2); });
+    stddev = std::sqrt(std::accumulate(square.begin(), square.end(), 0)) / static_cast<double>(data.size());
+    std::cout << "stddev : " << stddev << std::endl;
+
     return 0;
 }
