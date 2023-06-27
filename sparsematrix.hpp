@@ -74,3 +74,34 @@ void SparseMatrix<T>::insert(int row, int column, T value)
         }
     }
 }
+template <typename T>
+SparseMatrix<T> SparseMatrix<T>::add(const SparseMatrix<T>& other) const
+{
+    if (matrix_row != other.matrix_row || matrix_column != other.matrix_column) {
+        std::logic_error e { "Dimentions are not compatitable" };
+        throw e;
+    }
+    SparseMatrix copy { *this };
+    Node* current_other { other.head };
+    std::map<std::pair<int, int>, T> elements_others;
+    while (current_other != nullptr) {
+        elements_others[{ current_other->position_row, current_other->position_column }] = current_other->value;
+        current_other = current_other->next;
+    }
+    Node* current { copy.head };
+    std::map<std::pair<int, int>, T> elements;
+    while (current != nullptr) {
+        elements[{ current->position_row, current->position_column }] = current->value;
+        current = current->next;
+    }
+
+    for (auto& [pos, value] : elements) {
+        T& temp { value };
+        if (elements_others.contains(pos)) {
+            temp += elements_others[pos];
+            copy.insert(pos.first, pos.second, temp);
+        } else
+            copy.insert(pos.first, pos.second, temp);
+    }
+    return copy;
+}
