@@ -27,3 +27,12 @@ SparseMatrix<T>::SparseMatrix(SparseMatrix<T>&& other) noexcept
     head = other.head;
     other.head = nullptr;
 }
+template <typename T>
+SparseMatrix<T>::~SparseMatrix()
+{
+    while (head) {
+        Node* next { head->next };
+        delete head;
+        head = next;
+    }
+}

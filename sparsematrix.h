@@ -9,6 +9,7 @@ public:
     SparseMatrix(int, int);
     SparseMatrix(const SparseMatrix<T>&);
     SparseMatrix(SparseMatrix<T>&&) noexcept;
+    ~SparseMatrix();
 
 private:
     class Node {
