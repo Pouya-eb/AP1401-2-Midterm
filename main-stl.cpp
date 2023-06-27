@@ -22,5 +22,9 @@ int main()
     double stddev { std::sqrt(std::accumulate(square.begin(), square.end(), 0)) / static_cast<double>(data.size()) };
     std::cout << "stddev : " << stddev << std::endl;
 
+    // Part 4
+    auto iter { std::remove_if(data.begin(), data.end(), [&average, &stddev](double x) { return std::abs(x - average) > 2 * stddev; }) };
+    data.erase(iter, data.end());
+
     return 0;
 }
