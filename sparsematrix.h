@@ -6,6 +6,8 @@
 template <typename T>
 class SparseMatrix {
 public:
+    SparseMatrix(int, int);
+
 private:
     class Node {
     public:
@@ -22,6 +24,9 @@ private:
         {
         }
     };
+    Node* head {};
+    int matrix_row {};
+    int matrix_column {};
 };
 
 #include "sparsematrix.hpp"
