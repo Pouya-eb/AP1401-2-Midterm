@@ -19,3 +19,11 @@ SparseMatrix<T>::SparseMatrix(const SparseMatrix<T>& other)
     matrix_row = other.matrix_row;
     matrix_column = other.matrix_column;
 }
+template <typename T>
+SparseMatrix<T>::SparseMatrix(SparseMatrix<T>&& other) noexcept
+{
+    matrix_row = other.matrix_row;
+    matrix_column = other.matrix_column;
+    head = other.head;
+    other.head = nullptr;
+}
