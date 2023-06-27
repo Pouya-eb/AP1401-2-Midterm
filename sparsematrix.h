@@ -7,6 +7,7 @@ template <typename T>
 class SparseMatrix {
 public:
     SparseMatrix(int, int);
+    SparseMatrix(const SparseMatrix<T>&);
 
 private:
     class Node {
