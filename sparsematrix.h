@@ -11,6 +11,9 @@ public:
     SparseMatrix(SparseMatrix<T>&&) noexcept;
     ~SparseMatrix();
 
+    SparseMatrix& operator=(const SparseMatrix<T>&);
+    SparseMatrix operator=(SparseMatrix<T>&&) noexcept;
+
 private:
     class Node {
     public:

@@ -36,3 +36,19 @@ SparseMatrix<T>::~SparseMatrix()
         head = next;
     }
 }
+template <typename T>
+SparseMatrix<T>& SparseMatrix<T>::operator=(const SparseMatrix<T>& other)
+{
+    SparseMatrix<T> copy { other };
+    std::swap(head, copy.head);
+    return *this;
+}
+template <typename T>
+SparseMatrix<T> SparseMatrix<T>::operator=(SparseMatrix<T>&& other) noexcept
+{
+    matrix_row = other.matrix_row;
+    matrix_column = other.matrix_column;
+    head = other.head;
+    other.head = nullptr;
+    return *this;
+}
