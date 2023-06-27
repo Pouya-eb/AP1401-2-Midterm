@@ -6,6 +6,11 @@
 
 int main()
 {
+    // Part 1
+    std::vector<double> data(100000);
+    std::default_random_engine generator;
+    std::normal_distribution<double> distribution(0.0, 1.0);
+    std::generate_n(data.begin(), data.size(), [&]() { return distribution(generator); });
 
     return 0;
 }
