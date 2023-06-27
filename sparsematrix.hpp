@@ -52,3 +52,25 @@ SparseMatrix<T> SparseMatrix<T>::operator=(SparseMatrix<T>&& other) noexcept
     other.head = nullptr;
     return *this;
 }
+template <typename T>
+void SparseMatrix<T>::insert(int row, int column, T value)
+{
+    Node* copy { head };
+
+    if (head == nullptr) {
+        Node* node { new Node { row, column, value } };
+        node->next = head;
+        head = node;
+    } else {
+        while (copy != nullptr) {
+            if (copy->position_row == row && copy->position_column == column)
+                copy->value = value;
+            else {
+                Node* node { new Node { row, column, value } };
+                node->next = head;
+                head = node;
+            }
+            copy = copy->next;
+        }
+    }
+}

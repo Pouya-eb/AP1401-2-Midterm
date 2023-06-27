@@ -14,6 +14,8 @@ public:
     SparseMatrix& operator=(const SparseMatrix<T>&);
     SparseMatrix operator=(SparseMatrix<T>&&) noexcept;
 
+    void insert(int, int, T);
+
 private:
     class Node {
     public:
