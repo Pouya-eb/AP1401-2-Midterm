@@ -105,3 +105,22 @@ SparseMatrix<T> SparseMatrix<T>::add(const SparseMatrix<T>& other) const
     }
     return copy;
 }
+template <typename T>
+void SparseMatrix<T>::display() const
+{
+    Node* current { head };
+    std::map<std::pair<int, int>, T> elements;
+    while (current != nullptr) {
+        elements[{ current->position_row, current->position_column }] = current->value;
+        current = current->next;
+    }
+    for (int i {}; i < matrix_row; i++) {
+        for (int j {}; j < matrix_column; j++) {
+            if (elements[{ i, j }])
+                std::cout << elements[{ i, j }] << " ";
+            else
+                std::cout << 0 << " ";
+        }
+        std::cout << std::endl;
+    }
+}

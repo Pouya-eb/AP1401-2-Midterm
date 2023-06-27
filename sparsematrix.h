@@ -16,6 +16,7 @@ public:
 
     void insert(int, int, T);
     SparseMatrix<T> add(const SparseMatrix<T>&) const;
+    void display() const;
 
 private:
     class Node {
